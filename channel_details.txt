@@ -1,0 +1,4 @@
+a:3:{s:21:"channelProfilePicture";s:121:"https://yt3.ggpht.com/urNLBJGryDamao5r0jmlTg84mIBOoaeJd6XR67j4nuRd0iRvv5g-MUgaowsWKCs8V_t4KwST=s800-c-k-c0x00ffffff-no-rj";s:11:"channelName";s:3:"NBA";s:18:"channelDescription";s:589:"The NBA is the premier professional basketball league in the United States and Canada. The league is truly global, with games and programming in 215 countries and territories in 47 languages. The NBA consists of 30 teams. The NBA offers real time access to live regular season NBA games with a subscription to NBA LEAGUE PASS, available globally for TV, broadband, and mobile.  Real-time Stats, Scores, Highlights and more are available to fans on web and mobile with the NBA App. 
+
+For news, stories, highlights and more, go to our official website at https://app.link.nba.com/e/NBA_site
+";}

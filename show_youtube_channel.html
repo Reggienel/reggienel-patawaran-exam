@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NBA</title>
+    <style>
+      body {
+        font-family: "YouTube Sans Dark", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #181818;
+        opacity: 100%;
+      }
+
+      #app {
+        margin: 0 auto;
+      }
+
+      h1,
+      h2 {
+        color: #ffffff;
+        text-align: center;
+        font-size: 34px;
+        margin-top: 0;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.5;
+        margin-top: 2%;
+        width: 100%;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .video {
+        margin-bottom: 20px;
+        flex: 0 0 50%;
+        padding: 5px;
+      }
+
+      .video h2 {
+        font-size: 24px;
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-weight: bold;
+        width: 400px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .video a {
+        display: inline-block;
+        /* background-color: rgb(0, 162, 255); */
+        color: #ffffff;
+        padding: 2px 2px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      .videoThumb {
+        max-width: 400px;
+        border: 2px solid;
+        border-radius: 10px;
+        border-color: rgb(29 41 42);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .center {
+        max-width: 150px;
+        background-color: rgb(0, 162, 255);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+      }
+
+      .loading {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 50px;
+      }
+
+      hr.lineBorder {
+        border: 5px solid rgb(0, 162, 255);
+        border-radius: 5px;
+        margin-bottom: 2%;
+      }
+
+      .videosList {
+        text-align: center;
+        max-width: 4000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .videoDesc {
+        margin: 0 auto;
+        line-height: 1.5;
+        margin-top: 1%;
+        width: 95%;
+        justify-content: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 28px;
+        }
+
+        .videosList {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 24px;
+        }
+
+        .videosList {
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+
+        .video h2 {
+          font-size: 20px;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.cdnfonts.com/css/youtube-sans" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div v-if="channelData">
+        <h1>{{ channelData.channelName }}</h1>
+        <img
+          class="center"
+          :src="channelData.channelProfilePicture"
+          :alt="channelData.channelName"
+        />
+        <p v-html="channelData.channelDescription"></p>
+
+        <hr class="lineBorder" />
+
+        <div class="videosList">
+          <div
+            class="video"
+            v-for="video in channelData.videos"
+            :key="video.videoLink"
+          >
+            <h2 v-html="video.videoTitle"></h2>
+            <a :href="video.videoLink" target="_blank">
+              <img
+                class="videoThumb"
+                :src="video.videoThumbnail"
+                :alt="video.videoTitle"
+              />
+            </a>
+            <p class="videoDesc" v-html="video.videoDescription"></p>
+          </div>
+        </div>
+      </div>
+      <div v-else class="loading">Loading...</div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          channelData: null,
+        },
+        mounted() {
+          axios
+            .get("youtube_channel.json")
+            .then((response) => {
+              this.channelData = response.data;
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        },
+      });
+    </script>
+  </body>
+</html>
