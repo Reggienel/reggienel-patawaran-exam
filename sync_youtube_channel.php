@@ -2,11 +2,7 @@
 
 $apiKey = "AIzaSyC8G-zxDSIqgEFBgXPTFy8IkoIW3Q5fvHo";
 $channelId = "UCWJ2lWNubArHWmf3FIHbfcQ";
-$apiUrl =
-  "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&channelId=" .
-  $channelId .
-  "&key=" .
-  $apiKey;
+$apiUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&channelId=" . $channelId . "&key=" . $apiKey . "&order=date";
 
 $apiUrlChannelData =
   "https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" .
